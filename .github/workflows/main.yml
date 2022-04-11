@@ -2,7 +2,7 @@ name: Build
 on: 
     push: 
         branches:
-            - master
+            - dev
 jobs:
     build:
         runs-on: ubuntu-latest
@@ -17,5 +17,5 @@ jobs:
               uses: alexthemaster/action-build-typescript@v1.2.1
               with:
                 pushToBranch: true
-                branch: 'master'
+                branch: 'dev'
                 githubToken: ${{ secrets.GITHUB_TOKEN }}
