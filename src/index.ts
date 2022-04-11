@@ -17,10 +17,10 @@ const bot = new ds.Client({
 bot.login(envFile.TOKEN).then(() => {
     console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`)
     bot.user.setPresence({
-        status: "idle",
+        status: 'idle',
         game: {
-            name: "Your mom",
-            type: "WATCHING"
+            name: 'Your mom',
+            type: 'WATCHING'
         }
     })
 })
