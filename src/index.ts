@@ -29,7 +29,7 @@ async function handleMsg(command: string, msg: ds.Message<boolean>, args: string
             break
         
         case '8ball':
-            cmds.dev.ball8(msg)
+            cmds.fun.ball8(msg)
             break
             
         case 'ping':
