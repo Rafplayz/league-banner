@@ -14,6 +14,9 @@ bot.login(envFile.TOKEN)
     .then(() => {
     console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`);
 });
+// coolest activity code right here
+bot.user.setActivity('your mom', { type: 'PLAYING' });
+// coolest activity code end right here
 bot.on('messageCreate', async (msg) => {
     if (msg.author === bot.user || !msg.content.startsWith(PREFIX))
         return;
