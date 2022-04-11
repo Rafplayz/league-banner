@@ -1,1 +1,1 @@
-export * as base from './base'
+export * as dev from './dev'

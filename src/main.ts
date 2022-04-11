@@ -26,26 +26,11 @@ bot.on('messageCreate',async (msg) => {
 async function handleMsg(command: string, msg: ds.Message<boolean>, args: string[]) {
     switch (command) {
     case 'testembed':
-        msg.reply({
-            embeds: [new ds.MessageEmbed()
-                .setTitle('Title')
-                .setColor('RED')
-                .setThumbnail(msg.author.avatarURL())
-                .setImage(msg.guild.iconURL())
-                .setTimestamp()
-                .setDescription('Description')
-                .setFields([
-                    { name: "Field 1", value: "Field 1 Value" },
-                    { name: "Field 2", value: "Field 2 Value" },
-                    { name: "Field 1 Inline", value: "Field 1 Inline Value", inline: true },
-                    { name: "Field 2 Inline", value: "Field 2 Inline Value", inline: true }
-                ])
-            ]
-        })
+        cmds.dev.testembed(msg)
         break
 
     case 'ping':
-        cmds.base.ping(msg)
+        cmds.dev.ping(msg)
         break
     }
 }
