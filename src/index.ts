@@ -1,3 +1,4 @@
+// test
 import * as ds from 'discord.js'
 import 'dotenv/config'
 
