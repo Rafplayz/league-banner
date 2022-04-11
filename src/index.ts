@@ -19,7 +19,7 @@ bot.login(envFile.TOKEN).then(() => {
     bot.user.setPresence({
         status: "dnd",
         game: {
-            name: "Your mom"
+            name: "Your mom",
             type: "WATCHING"
         }
     })
