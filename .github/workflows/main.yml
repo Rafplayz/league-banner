@@ -15,3 +15,7 @@ jobs:
                 node-version: 12
             - name: Build and push
               uses: alexthemaster/action-build-typescript@v1.2.1
+              with:
+                pushToBranch: true
+                branch: 'master'
+                githubToken: ${{ secrets.GITHUB_TOKEN }}
