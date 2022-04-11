@@ -1,5 +1,5 @@
 import * as ds from 'discord.js'
-export default async function(msg: ds.Message<boolean>) {
+export async function ping(msg: ds.Message<boolean>) {
     let start = Date.now()
     let latency = <number><unknown>msg.createdAt - start
     let embed = new ds.MessageEmbed()

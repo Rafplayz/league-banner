@@ -1,1 +1,1 @@
-export * from './base'
+export * as base from './base'
