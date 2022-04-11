@@ -16,13 +16,7 @@ const bot = new ds.Client({
 // login the bot and do initializations
 bot.login(envFile.TOKEN).then(() => {
     console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`)
-    bot.user.setPresence({
-        status: 'idle',
-        game: {
-            name: 'Your mom',
-            type: 'WATCHING'
-        }
-    })
+    bot.user.setPresence({game: {name: 'Your mom', type: 'WATCHING'}, status: 'online'})
 })
 
 // coolest activity code end right here
