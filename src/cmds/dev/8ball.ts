@@ -5,6 +5,6 @@ let answers = ['no lol', 'yeah sure', 'idk lmao', 'what', 'try later', 'maybe /j
 let answer = answers[Math.floor(Math.random() * answers.length)];
 
 /* i lied i actually have no idea what im doing but i think this works :thumbs_up: thanks Google */
-export async function 8ball(msg: ds.Message<boolean>) { // endr please rename your functions
+export async function ball8(msg: ds.Message<boolean>) { // endr please rename your functions
     let newmessage = await msg.reply(answer);
 }
