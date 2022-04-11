@@ -12,7 +12,18 @@ const bot = new ds.Client({
         'GUILD_MEMBERS'
     ]
 })
+
 bot.login(envFile.TOKEN)
+.then(() => {
+    console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`)
+})
+bot.on('messageCreate',async (msg) => {
+    if(msg.author === bot.user) return
+    if(!msg.content.startsWith(PREFIX)) return
+    const args = msg.content.slice(1).split(/ +/)
+    const command = args.shift().toLowerCase()
+    handleMsg(command, msg, args)
+})
 async function handleMsg(command: string, msg: ds.Message<boolean>, args: string[]) {
     switch (command) {
     case 'testembed':
