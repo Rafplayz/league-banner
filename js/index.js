@@ -7,15 +7,15 @@ const bot = new ds.Client({
     intents: [
         'GUILDS',
         'GUILD_MESSAGES',
-        'GUILD_MEMBERS'
+        'GUILD_MEMBERS',
+        'GUILD_PRESENCES'
     ]
 });
-bot.login(envFile.TOKEN)
-    .then(() => {
+// login the bot and do initializations
+bot.login(envFile.TOKEN).then(() => {
     console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`);
+    bot.user.setActivity('your mom', { type: 'PLAYING' });
 });
-// coolest activity code right here
-bot.user.setActivity('your mom', { type: 'PLAYING' });
 // coolest activity code end right here
 bot.on('messageCreate', async (msg) => {
     if (msg.author === bot.user || !msg.content.startsWith(PREFIX))
@@ -34,6 +34,12 @@ async function handleMsg(command, msg, args) {
             break;
         case 'ping':
             cmds.dev.ping(msg);
+            break;
+        case 'getactivity':
+            cmds.dev.getactivity(msg);
+            break;
+        default:
+            msg.channel.send('Command not found!');
             break;
     }
 }
