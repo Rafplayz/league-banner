@@ -17,20 +17,24 @@ bot.login(envFile.TOKEN)
     console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`)
 })
 bot.on('messageCreate',async (msg) => {
-    if(msg.author === bot.user) return
-    if(!msg.content.startsWith(PREFIX)) return
+    if(msg.author === bot.user || !msg.content.startsWith(PREFIX)) return
     const args = msg.content.slice(1).split(/ +/)
     const command = args.shift().toLowerCase()
     handleMsg(command, msg, args)
 })
 async function handleMsg(command: string, msg: ds.Message<boolean>, args: string[]) {
     switch (command) {
-    case 'testembed':
-        cmds.dev.testembed(msg)
-        break
-
-    case 'ping':
-        cmds.dev.ping(msg)
-        break
+        case 'testembed':
+            cmds.dev.testembed(msg)
+            break
+        
+        case '8ball':
+            cmds.dev.8ball(msg)
+            break
+            
+        case 'ping':
+            cmds.dev.ping(msg)
+            break
+    
     }
 }
