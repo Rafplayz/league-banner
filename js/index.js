@@ -38,6 +38,9 @@ async function handleMsg(command, msg, args) {
         case 'getactivity':
             cmds.dev.getactivity(msg);
             break;
+        case 'status':
+            cmds.dev.status(msg, bot, args);
+            break;
         default:
             msg.channel.send('Command not found!');
             break;
