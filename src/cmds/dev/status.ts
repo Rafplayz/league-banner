@@ -35,3 +35,4 @@ export async function status(msg:ds.Message<boolean>,client:ds.Client<true>,args
         msg.reply("There was an error with your status change. Reason: " + err)
     }
 }
+// ok thanks raf and github copilot
