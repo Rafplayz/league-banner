@@ -33,3 +33,4 @@ export async function status(msg, client, args) {
         msg.reply("There was an error with your status change. Reason: " + err);
     }
 }
+// ok thanks raf and github copilot
