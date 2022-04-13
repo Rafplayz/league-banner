@@ -17,5 +17,5 @@ jobs:
               uses: alexthemaster/action-build-typescript@v1.2.1
               with:
                 pushToBranch: true
-                branch: 'main'
+                branch: 'master'
                 githubToken: ${{ secrets.GITHUB_TOKEN }}
