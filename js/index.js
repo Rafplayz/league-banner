@@ -2,21 +2,15 @@ import * as ds from 'discord.js';
 import 'dotenv/config';
 import * as cmds from './cmds';
 const envFile = process.env;
-const PREFIX = envFile.PREFIX;
-const bot = new ds.Client({
+export const PREFIX = envFile.PREFIX;
+export const bot = new ds.Client({
     intents: [
         'GUILDS',
         'GUILD_MESSAGES',
         'GUILD_MEMBERS',
-        'GUILD_PRESENCES'
+        'GUILD_PRESENCES',
     ]
 });
-// login the bot and do initializations
-bot.login(envFile.TOKEN).then(() => {
-    console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`);
-    bot.user.setPresence({ activities: [{ name: 'Your mom', type: 'WATCHING' }], status: 'idle' });
-});
-// coolest activity code end right here
 bot.on('messageCreate', async (msg) => {
     if (msg.author === bot.user || !msg.content.startsWith(PREFIX))
         return;
@@ -24,7 +18,23 @@ bot.on('messageCreate', async (msg) => {
     const command = args.shift().toLowerCase();
     handleMsg(command, msg, args);
 });
-async function handleMsg(command, msg, args) {
+bot.on('presenceUpdate', async (OldPres, NewPres) => {
+    let isPlayingLeague = false;
+    NewPres.activities?.forEach(activity => {
+        if (activity.name.includes('League of Legends'))
+            isPlayingLeague = true;
+    });
+    if (isPlayingLeague) {
+        console.log(NewPres.user.username + ' is playing League of Legends');
+    }
+});
+// login the bot and do initializations
+bot.login(envFile.TOKEN).then(() => {
+    console.log(`Logged in as ${bot.user.tag}!\n\nTip: press CTRL+C to exit program.\n`);
+    bot.user.setPresence({ activities: [{ name: 'Your mom', type: 'WATCHING' }], status: 'idle' });
+});
+// coolest activity code end right here
+export async function handleMsg(command, msg, args) {
     switch (command) {
         case 'testembed':
             cmds.dev.testembed(msg);

@@ -8,6 +8,6 @@
         "typescript": "^4.7.0-dev.20220311"
     },
     "scripts": {
-        "start": "node --experimental-specifier-resolution=node js"
+        "start": "tsc && node --experimental-specifier-resolution=node js"
     }
 }
