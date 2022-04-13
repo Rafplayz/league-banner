@@ -13,9 +13,5 @@ jobs:
               uses: actions/setup-node@v2.1.4
               with:
                 node-version: 12
-            - name: Build and push
+            - name: tsc test
               uses: alexthemaster/action-build-typescript@v1.2.1
-              with:
-                pushToBranch: true
-                branch: 'dev'
-                githubToken: ${{ secrets.GITHUB_TOKEN }}
