@@ -1,7 +1,8 @@
 import * as ds from 'discord.js'
 import 'dotenv/config'
-import * as cmds from './cmds'
+import * as cmds from './cmds/index.js'
 
+var the_end = {}
 const envFile = process.env
 export const PREFIX = envFile.PREFIX
 export const bot = new ds.Client({
@@ -25,10 +26,15 @@ bot.on('messageCreate',async (msg) => {
 bot.on('presenceUpdate',async (OldPres:ds.Presence,NewPres:ds.Presence) => {
     let isPlayingLeague = false
     NewPres.activities?.forEach(activity => {
-        if(activity.name.includes('League of Legends')) isPlayingLeague = true
+        if(activity.name.includes('League of Legends')){
+            the_end = activity.timestamps.end 
+            isPlayingLeague = true
+        } 
     })
     if(isPlayingLeague) {
+        console.log(the_end)
         console.log(NewPres.user.username + ' is playing League of Legends')
+
     }
 })
 

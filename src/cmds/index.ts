@@ -1,2 +1,2 @@
-export * as dev from './dev'
-export * as fun from './fun'
+export * as dev from './dev/index.js'
+export * as fun from './fun/index.js'
