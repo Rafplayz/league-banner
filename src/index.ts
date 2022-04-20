@@ -4,6 +4,7 @@ import * as cmds from './cmds'
 import { Dirent } from 'fs'
 import * as fs from 'fs/promises'
 import * as path from 'path'
+import { REST } from '@discordjs/rest'
 
 const envFile = process.env
 export const PREFIX = envFile.PREFIX
@@ -19,17 +20,23 @@ const slashCommands: {
     [key: string]: any
 } = []
 
-async function getFilesRecursively (directory: string) {
-    const output: Dirent[] = []
-    const filesInDirectory = await fs.readdir(directory, { withFileTypes: true, encoding: 'utf8' });
-    for (const file of filesInDirectory) {
+/**
+ * Gets all files in a directory including all subdirectories.
+ * @param directory {string}  The directory to search.
+ * @returns {Promise<string[]>}  A promise that resolves to an array of Dirents.
+ */
+async function getFilesRecursively (directory: string): Promise<string[]> {
+    let output: string[] = []
+    const files = await fs.readdir(directory, { withFileTypes: true })
+    console.log(files)
+    for (const file of files) {
         if (file.isDirectory()) {
-            output.push(...await getFilesRecursively((await fs.realpath(directory)) + '/' + file.name));
-        } 
-        else {
-            output.push(file);
+            output = output.concat(await getFilesRecursively(path.join(directory, file.name)))
+        } else {
+            output.push(path.join(directory, file.name))
         }
     }
+    console.log(output)
     return output
 };
 
@@ -99,5 +106,19 @@ export function quickEmbed(title: string, desc?: string, color?: ds.ColorResolva
         }
     ])
 }
-
-
+(async() => {
+// setup slash commands
+const slashCommands = []
+//@ts-ignore
+const files = (await getFilesRecursively("./js/cmds")).filter(file => file.endsWith('.js'))
+if(!files) {
+    console.error('No files found!')
+    return
+}
+const filteredFiles = files.filter(file => !file.match("index.js"))
+for(const file of filteredFiles) {
+    const req = await import("file://" + await fs.realpath(file))
+    console.log(req)
+}
+// add slash commands to bot
+})()
